@@ -1,0 +1,71 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="NextLoad.SiteMaster" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NextLoad</title>
+    <%--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />--%>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="/Content/bootstrap-5.2.css" rel="stylesheet" />
+    <link href="/Content/Site.css" rel="stylesheet" />
+    <script src="/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="/Scripts/bootstrap-5.2.js"></script>
+</head>
+<body>
+<header class="row">
+    <div class="col-2">
+        <i class="fas fa-bars"></i>
+        <a href="/Dashboard.aspx" style="margin: 0; font-size: 24px; text-decoration: none; color: #f0f0f0;">NextLoad</a>
+    </div>
+    <div class="col-10 container">
+        <div class="info-user" id="info-user">
+            <i class="fas fa-user"></i>
+            <asp:Label ID="LBL_User" runat="server" />
+            <div class="menu-login shadow-tm" id="menu-login">
+                <a href="/Login.aspx?logout=1" class="btn-logout w-100" style="text-decoration: none;">Cerrar Sesión</a>
+            </div>
+        </div>
+    </div>
+</header>
+<section class="container-fluid row">
+    <div class="col-2" id="menu">
+        <ul class="menu">
+            <li><a href="/Opcion/AjusteEntrada.aspx"><i class="fas fa-sort-amount-up-alt"></i><p class="m-0">Ajuste de Entrada</p></a></li>
+            <li><a href="/Opcion/AjusteSalida.aspx"><i class="fas fa-sort-amount-down-alt"></i><p class="m-0">Ajuste de Salida</p></a></li>
+            <li><a href="/Opcion/NotaEntrega.aspx"><i class="fas fa-file-export"></i><p class="m-0">Nota de Entrega</p></a></li>
+            <li><a href="/Opcion/NotaRecepcion.aspx"><i class="fas fa-file-import"></i><p class="m-0">Nota de Recepcion</p></a></li>
+            <li id="item_users" runat="server"><a href="/Usuarios/Index.aspx"><i class="fas fa-user"></i><p class="m-0">Usuarios</p></a></li>
+        </ul>
+    </div>
+    <div class="col-10 container-fluid">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+    </div>
+</section>
+<footer>
+    <div class="container">
+        <p style="margin: 0;">NextLoad Ver. 1.0 &copy; 2024</p>
+    </div>
+</footer>
+<script>
+
+    function preventBack() {
+        window.history.forward();
+    }
+
+    setTimeout("preventBack()", 0);
+    window.onunload = function () { null };
+
+    $("#info-user").click(function () {
+        $("#menu-login").slideToggle();
+    });
+
+    $(".fas.fa-bars").click(function () {
+        $("#menu").toggleClass("active");
+        $('#menu li a p').animate({ width: 'toggle' });
+    });
+
+</script>
+</body>
+</html>

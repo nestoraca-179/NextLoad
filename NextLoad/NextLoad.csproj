@@ -1,0 +1,1112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1176F97D-BD55-4113-974D-13C3C98F1307}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NextLoad</RootNamespace>
+    <AssemblyName>NextLoad</AssemblyName>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <UpgradeBackupLocation />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Web.Resources.v18.2, Version=18.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.3.6.0\lib\net45\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Text.Encoding.CodePages, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encoding.CodePages.8.0.0\lib\net462\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="DevExpress.Data.v18.2, Version=18.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Web.ASPxThemes.v18.2, Version=18.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v18.2.Core, Version=18.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v18.2.Export, Version=18.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v18.2.Core, Version=18.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Web.v18.2, Version=18.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CambioClave.aspx" />
+    <Content Include="Content\bootstrap-5.2.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Dashboard.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Login.aspx" />
+    <Content Include="Models\NextLoad.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>NextLoad.Context.cs</LastGenOutput>
+      <DependentUpon>NextLoad.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\NextLoad.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NextLoad.edmx</DependentUpon>
+      <LastGenOutput>NextLoad.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ProfitAdm.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ProfitAdm.edmx</DependentUpon>
+      <LastGenOutput>ProfitAdm.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ProfitAdm.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ProfitAdm.edmx</DependentUpon>
+      <LastGenOutput>ProfitAdm.cs</LastGenOutput>
+    </Content>
+    <Content Include="Opcion\AjusteEntrada.aspx" />
+    <Content Include="Opcion\AjusteSalida.aspx" />
+    <Content Include="Opcion\NotaEntrega.aspx" />
+    <Content Include="Opcion\NotaRecepcion.aspx" />
+    <Content Include="Scripts\bootstrap-5.2.js" />
+    <EntityDeploy Include="Models\ProfitAdm.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ProfitAdm.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ProfitAdm.edmx.diagram">
+      <DependentUpon>ProfitAdm.edmx</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-3.6.0.intellisense.js" />
+    <Content Include="Scripts\jquery-3.6.0.js" />
+    <Content Include="Scripts\jquery-3.6.0.min.js" />
+    <Content Include="Scripts\jquery-3.6.0.slim.js" />
+    <Content Include="Scripts\jquery-3.6.0.slim.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Site.master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Usuarios\Agregar.aspx" />
+    <Content Include="Usuarios\Editar.aspx" />
+    <Content Include="Usuarios\Index.aspx" />
+    <Content Include="Web.config" />
+    <EntityDeploy Include="Models\NextLoad.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NextLoad.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\NextLoad.edmx.diagram">
+      <DependentUpon>NextLoad.edmx</DependentUpon>
+    </Content>
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.6.0.min.map" />
+    <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CambioClave.aspx.cs">
+      <DependentUpon>CambioClave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CambioClave.aspx.designer.cs">
+      <DependentUpon>CambioClave.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DataController.cs" />
+    <Compile Include="Controllers\IncidentController.cs" />
+    <Compile Include="Controllers\LogController.cs" />
+    <Compile Include="Controllers\Repository.cs" />
+    <Compile Include="Controllers\SecurityController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AjusteExcel.cs" />
+    <Compile Include="Models\Incidente.cs">
+      <DependentUpon>NextLoad.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Log.cs">
+      <DependentUpon>NextLoad.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NextLoad.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NextLoad.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NextLoad.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NextLoad.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NextLoad.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NextLoad.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NotaExcel.cs" />
+    <Compile Include="Models\pActualizarEncabezadoAjusteEntradaSalida_Result.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pActualizarEncabezadoNotaEntregaVenta_Result.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pActualizarEncabezadoNotaRecepcionCompra_Result.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\par_emp.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pConsultarStockArticulo_Result.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pConsultarStockxAlmacen_Result.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pInsertarAjusteEntradaSalida_Result.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pInsertarNotaEntregaVenta_Result.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pInsertarNotaRecepcionCompra_Result.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pInsertarRenglonesAjusteEntradaSalida_Result.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pInsertarRenglonesLoteSalida_Result.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pInsertarRenglonesLote_Result.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pInsertarRenglonesNotaEntregaVenta_Result.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pInsertarRenglonesNotaRecepcionCompra_Result.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pObtenerSerieProceso_Result.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pObtenerUltimoCosto_Result.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProfitAdm.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProfitAdm.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProfitAdm.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProfitAdm.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProfitAdm.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pSeleccionarUsoSucursalConsecutivoTipo_Result.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pvArticuloExt.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pvCaja.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pvCobroExt.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pvCobroTPRengExt.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pvConfigPuntoV.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pvConfigPuntoVPrecio.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pvDenominacionesMoneda.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pvDevolucionClienteExt.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pvEtiquetaBalanza.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pvFacturaVentaExt.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pvMovimientoBancoExt.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pvMovimientoCajaDevolucionExt.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pvMovimientoCajaExt.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pvParEmp.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pvRenglonTicket.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pvTarjetaCreditoExt.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pvTipoTarjeta.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pvTurno.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pvTurnoExe.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pvValeAlimentacion.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pvValeAlimentacionReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saAdiCampo.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saAdiGrupo.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saAjPrecioCostoAuto.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saAjPrecioCostoM.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saAjPrecioCostoReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saAjuste.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saAjusteReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saAlmacen.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saAreaImpresion.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saArtCaracteristica.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saArtCaracteristicaMov.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saArtCompuesto.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saArtCompuestoGen.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saArtCompuestoGenReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saArtCompuestoReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saArtCrearAut.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saArticulo.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saArtIdentificadorReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saArtImagen.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saArtImportacion.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saArtMargen.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saArtPrecio.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saArtProveedorReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saArtRelacionadoReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saArtUbicacion.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saArtUnidad.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saBanco.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saBeneficiario.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saCaja.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saCatArticulo.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saCheque.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saChequeDevueltoCompra.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saChequeDevueltoVenta.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saChequera.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saCliente.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saClienteExt.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saCobro.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saCobroDocReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saCobroRentenReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saCobroRetenIvaReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saCobroTPReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saColor.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saComisionGeneracion.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saComisionPrecioArticulo.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saComisionPrecioCategoria.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saComisionPrecioLinea.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saComisionRentabArticulo.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saComisionRentabCategoria.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saComisionRentabLinea.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saComisionResultado.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saComisionTipo.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConcBanco.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConciliacionAutoReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConciliacionDetalle.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saCondicionPago.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConfigAjuste.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConfigArticulo.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConfigCliente.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConfigCobro.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConfigCotizacionCliente.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConfigCotizacionProveedor.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConfigDevolucionCliente.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConfigDevolucionProveedor.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConfigDistCosto.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConfigFacturaCompra.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConfigFacturaVenta.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConfigMovBanco.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConfigMovCaja.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConfigNotaDespachoVenta.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConfigNotaEntregaVenta.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConfigNotaRecepcionCompra.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConfigOrdenCompra.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConfigOrdenPago.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConfigPago.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConfigPedidoVenta.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConfigPlantillaCompra.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConfigPlantillaVenta.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConfigProveedor.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConfigTraslado.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConISLR.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConsecutivo.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saConsecutivoTipo.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saCostoHistoricoEntrada.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saCostoHistoricoSalida.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saCotizacionCliente.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saCotizacionClienteReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saCotizacionProveedor.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saCotizacionProveedorReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saCuentaBancaria.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saCuentaIngEgr.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saDatosDeImportacion.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saDepositoBanco.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saDepositoBancoReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saDescArticulo.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saDescCategoria.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saDescLinea.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saDescProntoPago.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saDevolucionCliente.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saDevolucionClienteReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saDevolucionProveedor.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saDevolucionProveedorReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saDevolucionProveedorRengExt.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saDistribCosto.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saDistribCostoDestinoReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saDistribCostoOrigenReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saDistribCostoRelaReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saDocumentoCompra.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saDocumentoCompraReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saDocumentoElectronico.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saDocumentoImagen.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saDocumentoVenta.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saDocumentoVentaReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saFactCompRengCaracteristicasAdic.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saFactCompRengPesoVolumen.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saFacturaCompra.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saFacturaCompraImportacion.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saFacturaCompraReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saFacturaCompraRengExt.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saFacturaVenta.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saFacturaVentaReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saGiroCompra.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saGiroCompraReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saGiroVenta.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saGiroVentaReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saHistoricoEstado.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saImpMun.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saImpuesto.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saImpuestoReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saImpuestoSobreVenta.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saImpuestoSobreVentaReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saIncoterm.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saIntegr.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saInventarioFisico.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saLineaArticulo.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saLoteEntrada.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saLoteSalida.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saMoneda.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saMovimientoBanco.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saMovimientoCaja.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saNCFInfoDocCompra.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saNCFInfoDocVenta.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saNotaDespachoVenta.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saNotaDespachoVentaReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saNotaEntregaVenta.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saNotaEntregaVentaReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saNotaRecepcionCompra.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saNotaRecepcionCompraReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saOrdenCompra.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saOrdenCompraReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saOrdenPago.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saOrdenPagoReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saPago.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saPagoDocReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saPagoRentenReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saPagoRetenIvaReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saPagoTPReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saPais.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saParametroConc.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saPedidoVenta.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saPedidoVentaReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saPista.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saPlanillaFiscal.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saPlantillaCompra.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saPlantillaCompraReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saPlantillaCompraReq.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saPlantillaCompraReqRelacion.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saPlantillaCompraReqRenglon.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saPlantillaVenta.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saPlantillaVentaReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saProcedencia.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saProveedor.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saProveedorExt.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saPuntoEmision.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saReglaInt.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saResInventario.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saResInventarioReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saSaldoBanco.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saSaldoCaja.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saSegmento.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saSeriales.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saSerie.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saSerieTipo.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saSerieTipoExt.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saStockAlmacen.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saSubLinea.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saSucursal.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saTabuladorIslr.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saTabuladorIslrReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saTarjetaCredito.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saTasa.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saTax.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saTipoAjuste.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saTipoAnulacionVenta.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saTipoCliente.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saTipoComprobante.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saTipoDocumento.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saTipoGasto.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saTipoImagen.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saTipoPrecio.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saTipoProveedor.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saTransferenciaEntreCuentas.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saTransporte.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saTraslado.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saTrasladoReng.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saUbicacion.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saUnidad.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saUnidadTributaria.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saVendedor.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saZona.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\scCentro.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\scCuenta.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\scGastos.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\stgFactLoteGen.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\stgFacturaVentaExt.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TempTableDE.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TempTableIN.cs">
+      <DependentUpon>ProfitAdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Usuario.cs">
+      <DependentUpon>NextLoad.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Opcion\AjusteEntrada.aspx.cs">
+      <DependentUpon>AjusteEntrada.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Opcion\AjusteEntrada.aspx.designer.cs">
+      <DependentUpon>AjusteEntrada.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Opcion\AjusteSalida.aspx.cs">
+      <DependentUpon>AjusteSalida.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Opcion\AjusteSalida.aspx.designer.cs">
+      <DependentUpon>AjusteSalida.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Opcion\NotaEntrega.aspx.cs">
+      <DependentUpon>NotaEntrega.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Opcion\NotaEntrega.aspx.designer.cs">
+      <DependentUpon>NotaEntrega.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Opcion\NotaRecepcion.aspx.cs">
+      <DependentUpon>NotaRecepcion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Opcion\NotaRecepcion.aspx.designer.cs">
+      <DependentUpon>NotaRecepcion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Site.master.cs">
+      <DependentUpon>Site.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.master.designer.cs">
+      <DependentUpon>Site.master</DependentUpon>
+    </Compile>
+    <Compile Include="Usuarios\Agregar.aspx.cs">
+      <DependentUpon>Agregar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usuarios\Agregar.aspx.designer.cs">
+      <DependentUpon>Agregar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Usuarios\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usuarios\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Usuarios\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usuarios\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50759</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50759/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
