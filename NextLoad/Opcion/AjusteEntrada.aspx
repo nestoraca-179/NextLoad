@@ -18,7 +18,7 @@
         </div>
     </asp:Panel>
     <div class="d-flex justify-content-between align-items-center mt-3">
-        <h2>Ajuste de Entrada</h2>
+        <h2>Ajuste de Entrada <span id="SP_Exist" runat="server" visible="false" style="font-size: 20px;">(Doc. Existente)</span></h2>
         <div>
             <asp:LinkButton ID="BTN_DownloadTemplate" runat="server" CssClass="btn btn-primary m-0" OnClick="BTN_DownloadTemplate_Click">
                 <i class="fas fa-download"></i> Descargar Plantilla
@@ -34,9 +34,13 @@
         <asp:LinkButton ID="BTN_UploadFileExcel" runat="server" CssClass="btn btn-success disabled mt-3" OnClick="BTN_UploadFileExcel_Click" OnClientClick="openModal()">
             <i class="fas fa-file-excel"></i> Subir Archivo Excel
         </asp:LinkButton>
+        <div class="d-flex mt-3 mx-3">
+            <dx:ASPxCheckBox ID="CK_Exist" runat="server" AutoPostBack="true" Text="Cargar lotes a Doc. Existente" OnCheckedChanged="CK_Exist_CheckedChanged">
+            </dx:ASPxCheckBox>
+        </div>
     </div>
     <hr />
-    <div>
+    <asp:Panel ID="PN_CondsNormal" runat="server" Visible="true">
         <h3>Condiciones</h3>
         <ul style="color: #555; font-size: 14px; line-height: 25px;">
             <li>El articulo debe estar activo.</li>
@@ -52,7 +56,26 @@
             <li>Todos los codigos de unidades por articulo deben ser iguales.</li>
             <li>Todos los valores de costo por articulo y por almacen deben ser iguales.</li>
         </ul>
-    </div>
+    </asp:Panel>
+    <asp:Panel ID="PN_CondsExists" runat="server" Visible="false">
+        <h3>Condiciones (Documento Existente)</h3>
+        <ul style="color: #555; font-size: 14px; line-height: 25px;">
+            <li>El Nro. de Documento debe existir.</li>
+            <li>El Nro. del Ajuste creado debe ser el mismo para todos los renglones.</li>
+            <li>El Nro. de Renglon debe existir.</li>
+            <li>El Renglon debe ser de tipo E01 (Entrada).</li>
+            <li>El Articulo debe existir.</li>
+            <li>El Articulo debe estar activo.</li>
+            <li>El Articulo debe manejar lotes.</li>
+            <li>El Articulo debe manejar fecha de vencimiento.</li>
+            <li>El Articulo debe ser unico por cada renglon.</li>
+            <li>El Nro. de Lote no debe estar registrado previamente.</li>
+            <li>El Nro. de Lote no debe estar repetido entre renglones.</li>
+            <li>Los codigos de los articulos en los renglones del documento y el archivo deben coincidir.</li>
+            <li>La sumatoria de cantidad en los lotes por renglon no debe exceder la cantidad del renglon.</li>
+            <li>La Fecha de Elaboracion debe ser menor a la Fecha de Vencimiento.</li>
+        </ul>
+    </asp:Panel>
     <%-- MODAL WAITING --%>
     <div class="modal fade" id="modal-waiting" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog" role="document">

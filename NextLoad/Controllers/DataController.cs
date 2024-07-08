@@ -75,6 +75,56 @@ namespace NextLoad.Controllers
             return rows;
         }
 
+        public List<AjusteExistExcel> ProcessExistExcelAdjust(string path, bool output)
+        {
+			List<AjusteExistExcel> rows = new List<AjusteExistExcel>();
+
+			Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+			using (FileStream stream = File.Open(path, FileMode.Open, FileAccess.Read))
+            {
+				using (IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream))
+                {
+                    bool firstRow = true;
+                    while (reader.Read())
+                    {
+						if (firstRow)
+						{
+							firstRow = false;
+						}
+						else
+						{
+							int r = reader.Depth + 1; // FILA ACTUAL DEL READER
+							for (int column = 0; column < reader.FieldCount - 1; column++) // SE EVALUA QUE NINGUNA CELDA ESTE EN BLANCO
+							{
+								string value = reader.GetValue(column) != null ? reader.GetValue(column).ToString() : "";
+								if (string.IsNullOrEmpty(value))
+								{
+									char c = (char)('A' + column);
+									throw new Exception(string.Format("CELDA EN BLANCO: {0}{1}", c, r));
+								}
+							}
+
+							AjusteExistExcel row = new AjusteExistExcel();
+							row.doc_num = reader.GetValue(0).ToString();
+							row.reng_num = int.Parse(reader.GetValue(1).ToString());
+							row.co_art = reader.GetValue(2).ToString();
+							row.num_lote = reader.GetValue(3).ToString();
+							row.total_art = int.Parse(reader.GetValue(4).ToString());
+							if (!output)
+							{
+								row.fec_elab = Convert.ToDateTime(reader.GetValue(5));
+								row.fec_venc = Convert.ToDateTime(reader.GetValue(6));
+							}
+
+							rows.Add(row);
+						}
+					}
+                }
+			}
+
+			return rows;
+		}
+        
         public void ProcessDataAdjust(List<AjusteExcel> data, bool output)
         {
             var uniques = data.GroupBy(r => r.co_art).Select(g => g.First().co_art).ToList();
@@ -148,7 +198,77 @@ namespace NextLoad.Controllers
             }
         }
 
-        public string InsertDataAdjust(List<AjusteExcel> data, string user, bool output)
+		public void ProcessExistDataAdjust(List<AjusteExistExcel> data, bool output)
+		{
+            // AGRUPANDO NUMEROS DE RENGLON
+			var uniques = data.GroupBy(r => r.reng_num).Select(g => g.First().reng_num).ToList();
+			
+            // VALIDANDO QUE EL NUMERO DE DOCUMENTO/AJUSTE SEA IGUAL PARA TODOS LOS RENGLONES
+            var doc_nums = data.GroupBy(r => r.doc_num).Select(g => g.First().doc_num).ToList();
+            if (doc_nums.Count > 1)
+                throw new Exception("Solo se admite un unico Nro. de Ajuste por archivo");
+
+			if (!output)
+			{
+				foreach (AjusteExistExcel row in data)
+				{
+					// ARTICULO CON FECHA DE ELABORACION MAYOR O IGUAL A LA FECHA DE VENCIMIENTO
+					if (row.fec_elab >= row.fec_venc)
+						throw new Exception(string.Format("Articulo {0}/Lote #{1} (fec_elab >= fec_venc)", row.co_art, row.num_lote));
+				}
+			}
+
+			using (ProfitAdmEntities context = new ProfitAdmEntities())
+			{
+                // BUSCANDO NUMERO DE AJUSTE EN PROFIT
+				saAjuste aj = context.saAjuste.AsNoTracking().Include(a => a.saAjusteReng)
+                    .SingleOrDefault(a => a.ajue_num.Trim() == doc_nums.FirstOrDefault());
+
+				if (aj == null) // AJUSTE NO EXISTE EN PROFIT
+					throw new Exception(string.Format("NRO. DE AJUSTE {0} NO ENCONTRADO", doc_nums.FirstOrDefault()));
+
+                foreach (int u in uniques)
+                {
+                    if (!aj.saAjusteReng.Any(r => r.reng_num == u)) // RENGLON NO EXISTE EN PROFIT
+						throw new Exception(string.Format("NO EXISTE RENGLON NRO {0} EN EL DOCUMENTO {1}", u, doc_nums.FirstOrDefault()));
+
+                    if (aj.saAjusteReng.Single(r => r.reng_num == u).co_tipo.Trim() != "E01") // RENGLON NO ES DE TIPO E01
+						throw new Exception(string.Format("EL RENGLON NRO {0} NO ES DE TIPO E01 (ENTRADA)", u));
+
+					// VALIDANDO QUE EL CODIGO DE ARTICULO SEA IGUAL PARA CADA RENGLON
+					var co_arts = data.Where(r => r.reng_num == u).GroupBy(r => r.co_art).Select(g => g.First().co_art).ToList();
+                    if (co_arts.Count > 1)
+                        throw new Exception(string.Format("Renglon {0} con codigos de articulos distintos", u));
+
+					// RENGLON DOCUMENTO NO COINCIDE CON RENGLON ARCHIVO
+					if (aj.saAjusteReng.Single(r => r.reng_num == u).co_art.Trim() != co_arts.FirstOrDefault())
+						throw new Exception(string.Format("ARTICULOS EN EL RENGLON NRO {0} NO COINCIDEN", u));
+
+					// BUSCANDO ARTICULO EN PROFIT
+					saArticulo art = context.saArticulo.AsNoTracking().SingleOrDefault(a => a.co_art.Trim() == co_arts.FirstOrDefault());
+					if (art == null)
+						throw new Exception(string.Format("ARTICULO {0} NO ENCONTRADO", co_arts.FirstOrDefault())); // ARTICULO NO EXISTE EN PROFIT
+
+					if (art.anulado) // ARTICULO INACTIVO
+						throw new Exception(string.Format("ARTICULO {0} INACTIVO", co_arts.FirstOrDefault()));
+
+					if (!art.maneja_lote) // ARTICULO NO MANEJA LOTE
+						throw new Exception(string.Format("ARTICULO {0} NO MANEJA LOTE", co_arts.FirstOrDefault()));
+
+					if (!art.maneja_lote_venc) // ARTICULO NO MANEJA FECHA DE VENCIMIENTO
+						throw new Exception(string.Format("ARTICULO {0} NO MANEJA LOTE CON FECHA DE VENCIMIENTO", u));
+
+					var num_lotes = data.Select(r => r.num_lote).ToList();
+					if (num_lotes.Distinct().Count() < num_lotes.Count) // ARTICULO CON NUMEROS DE LOTES REPETIDOS
+					{
+						string rep = num_lotes.GroupBy(r => r).Where(g => g.Count() > 1).Select(g => g.Key).First();
+						throw new Exception(string.Format("El numero de lote #{0} se encuentra repetido", rep));
+					}
+				}
+			}
+		}
+
+		public string InsertDataAdjust(List<AjusteExcel> data, string user, bool output)
         {
             string num_aj = "";
             string sucur = data.Select(r => r.co_sucur).First();

@@ -40,9 +40,17 @@ namespace NextLoad.Opcion
                     {
                         file.SaveAs(path);
 
-                        var rows = dc.ProcessExcelAdjust(path, false);
-                        dc.ProcessDataAdjust(rows, false);
-                        result = dc.InsertDataAdjust(rows, user.username, false);
+                        if (!CK_Exist.Checked)
+                        {
+							var rows = dc.ProcessExcelAdjust(path, false);
+							dc.ProcessDataAdjust(rows, false);
+							result = dc.InsertDataAdjust(rows, user.username, false);
+                        }
+                        else
+                        {
+                            var rows = dc.ProcessExistExcelAdjust(path, false);
+                            dc.ProcessExistDataAdjust(rows, false);
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -79,20 +87,33 @@ namespace NextLoad.Opcion
 
         protected void BTN_DownloadTemplate_Click(object sender, EventArgs e)
         {
-            string path = Server.MapPath("~") + "Templates\\ajuste_entrada.xlsx";
-            Response.ContentType = "application/vnd.ms-excel";
-            Response.AppendHeader("Content-Disposition", "attachment; filename=TEMPLATE_ajuste_entrada.xlsx");
-            Response.TransmitFile(path);
-            Response.End();
+            if (!CK_Exist.Checked)
+            {
+				string path = Server.MapPath("~") + "Templates\\ajuste_entrada.xlsx";
+				Response.ContentType = "application/vnd.ms-excel";
+				Response.AppendHeader("Content-Disposition", "attachment; filename=TEMPLATE_ajuste_entrada.xlsx");
+				Response.TransmitFile(path);
+				Response.End();
+			}
         }
 
         protected void BTN_DownloadExample_Click(object sender, EventArgs e)
         {
-            string path = Server.MapPath("~") + "Files\\ajuste_entrada.xlsx";
-            Response.ContentType = "application/vnd.ms-excel";
-            Response.AppendHeader("Content-Disposition", "attachment; filename=EXAMPLE_ajuste_entrada.xlsx");
-            Response.TransmitFile(path);
-            Response.End();
+            if (!CK_Exist.Checked)
+            {
+				string path = Server.MapPath("~") + "Files\\ajuste_entrada.xlsx";
+				Response.ContentType = "application/vnd.ms-excel";
+				Response.AppendHeader("Content-Disposition", "attachment; filename=EXAMPLE_ajuste_entrada.xlsx");
+				Response.TransmitFile(path);
+				Response.End();
+			}
         }
-    }
+
+		protected void CK_Exist_CheckedChanged(object sender, EventArgs e)
+		{
+            PN_CondsNormal.Visible = !CK_Exist.Checked;
+            PN_CondsExists.Visible = CK_Exist.Checked;
+            SP_Exist.Visible = CK_Exist.Checked;
+		}
+	}
 }

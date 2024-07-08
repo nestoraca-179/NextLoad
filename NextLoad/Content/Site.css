@@ -63,6 +63,7 @@ body > section.container-fluid > .col-2.active, footer > .col-2.active {
     flex: 0;
 }
 body > section.container-fluid > .col-10 {
+    height: 100%;
     background: #f4f4f8;
     flex: auto;
     overflow-y: auto;
