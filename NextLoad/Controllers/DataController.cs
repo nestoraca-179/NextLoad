@@ -1,11 +1,11 @@
 ﻿using ExcelDataReader;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Collections.Generic;
 using NextLoad.Models;
 using System.Data.Entity;
 
@@ -220,7 +220,11 @@ namespace NextLoad.Controllers
 
 			using (ProfitAdmEntities context = new ProfitAdmEntities())
 			{
-                // BUSCANDO NUMERO DE AJUSTE EN PROFIT
+                // TIPO DE RENGLON
+				string tipo = output ? "S01" : "E01";
+                string d_tipo = output ? "SALIDA" : "ENTRADA";
+
+				// BUSCANDO NUMERO DE AJUSTE EN PROFIT
 				saAjuste aj = context.saAjuste.AsNoTracking().Include(a => a.saAjusteReng)
                     .SingleOrDefault(a => a.ajue_num.Trim() == doc_nums.FirstOrDefault());
 
@@ -232,8 +236,11 @@ namespace NextLoad.Controllers
                     if (!aj.saAjusteReng.Any(r => r.reng_num == u)) // RENGLON NO EXISTE EN PROFIT
 						throw new Exception(string.Format("NO EXISTE RENGLON NRO {0} EN EL DOCUMENTO {1}", u, doc_nums.FirstOrDefault()));
 
-                    if (aj.saAjusteReng.Single(r => r.reng_num == u).co_tipo.Trim() != "E01") // RENGLON NO ES DE TIPO E01
-						throw new Exception(string.Format("EL RENGLON NRO {0} NO ES DE TIPO E01 (ENTRADA)", u));
+                    if (aj.saAjusteReng.Single(r => r.reng_num == u).co_tipo.Trim() != tipo) // RENGLON NO ES DE TIPO E01/S01
+						throw new Exception(string.Format("EL RENGLON NRO {0} NO ES DE TIPO {1} ({2})", u, tipo, d_tipo));
+
+                    if (aj.saAjusteReng.Single(r => r.reng_num == u).lote_asignado)
+                        throw new Exception(string.Format("Renglon {0} ya ha sido asignado previamente", u));
 
 					// VALIDANDO QUE EL CODIGO DE ARTICULO SEA IGUAL PARA CADA RENGLON
 					var co_arts = data.Where(r => r.reng_num == u).GroupBy(r => r.co_art).Select(g => g.First().co_art).ToList();
@@ -243,6 +250,12 @@ namespace NextLoad.Controllers
 					// RENGLON DOCUMENTO NO COINCIDE CON RENGLON ARCHIVO
 					if (aj.saAjusteReng.Single(r => r.reng_num == u).co_art.Trim() != co_arts.FirstOrDefault())
 						throw new Exception(string.Format("ARTICULOS EN EL RENGLON NRO {0} NO COINCIDEN", u));
+
+                    // VERIFICANDO QUE EL TOTAL DEL RENGLON SEA IGUAL A LA SUMATORIA DE CANTIDAD ENTRE LOTES EN EL ARCHIVO
+                    decimal total_reng = aj.saAjusteReng.Single(r => r.reng_num == u).total_art;
+					decimal total_cant = data.Where(r => r.reng_num == u).Select(r => r.total_art).Sum();
+                    if (total_reng != total_cant)
+                        throw new Exception(string.Format("TOTAL RENGLON: {0} / TOTAL CANTIDAD ARCHIVO: {1}", total_reng, total_cant));
 
 					// BUSCANDO ARTICULO EN PROFIT
 					saArticulo art = context.saArticulo.AsNoTracking().SingleOrDefault(a => a.co_art.Trim() == co_arts.FirstOrDefault());
@@ -404,7 +417,93 @@ namespace NextLoad.Controllers
             return num_aj.Trim();
         }
 
-        // PROCESOS DE NOTA DE RECEPCION
+        public string InsertExistDataAdjust(List<AjusteExistExcel> data, string user, bool output)
+		{
+            string doc_num = "";
+			var uniques = data.GroupBy(r => r.reng_num).Select(g => g.First().reng_num).ToList();
+			using (ProfitAdmEntities context = new ProfitAdmEntities())
+            {
+				using (DbContextTransaction tran = context.Database.BeginTransaction())
+				{
+                    try
+                    {
+						string sucur = context.saSucursal.First().co_sucur;
+						doc_num = data.GroupBy(r => r.doc_num).Select(g => g.First().doc_num).ToList().First();
+						saAjuste ajus = context.saAjuste.AsNoTracking().Include(a => a.saAjusteReng).Single(a => a.ajue_num == doc_num);
+
+						foreach (int u in uniques)
+						{
+							int r_lot = 1;
+							saAjusteReng reng = ajus.saAjusteReng.First(r => r.reng_num == u);
+							List<AjusteExistExcel> rows = data.Where(r => r.reng_num == u).ToList();
+
+							foreach (AjusteExistExcel row in rows)
+							{
+								// INGRESO DE RENGLON LOTE AJUSTE
+								saLoteEntrada lote = context.saLoteEntrada.SingleOrDefault(r => r.numero_lote == row.num_lote);
+
+								if (output)
+								{
+									if (lote != null)
+									{
+										if (lote.stock_actual < row.total_art)
+											throw new Exception(string.Format("STOCK ACTUAL LOTE #{0}: {1} / CANTIDAD SOLICITADA: {2}",
+												row.num_lote, lote.stock_actual, row.total_art));
+
+										var sp_8 = context.pActualizarLote(lote.rowguid, lote.numero_lote, row.total_art, false, false);
+										sp_8.Dispose();
+
+										var sp_extract = context.pInsertarRenglonesLoteSalida(reng.rowguid, r_lot, "AJUS", reng.co_art,
+											reng.co_alma, lote.numero_lote, lote.rowguid, row.total_art, 1, user, "NEXTLOAD", sucur, null, null);
+										sp_extract.Dispose();
+									}
+									else
+									{
+										// LOTE NO ESTA REGISTRADO
+										throw new Exception(string.Format("El lote #{0} para el articulo {1} no se encuentra registrado", row.num_lote, u));
+									}
+								}
+								else
+								{
+									if (lote != null)
+									{
+										// LOTE YA ESTA REGISTRADO
+										throw new Exception(string.Format("El lote #{0} para el articulo {1} ya se encuentra registrado", row.num_lote, u));
+									}
+									else
+									{
+										var sp_insert = context.pInsertarRenglonesLote(reng.rowguid, r_lot, "AJUS", reng.co_art, reng.co_alma,
+											row.num_lote, row.fec_elab, row.fec_venc, row.total_art, 1, user, "NEXTLOAD", sucur, null, null);
+										sp_insert.Dispose();
+									}
+								}
+
+								r_lot++;
+							}
+
+							// ASIGNACION DE LOTE
+							int sp_lot = context.pActualizaCampoLoteAsignado("AJUS", true, reng.rowguid);
+						}
+
+						// ACTUALIZACION DE AJUSTE
+						var sp_aj = context.pActualizarEncabezadoAjusteEntradaSalida(ajus.rowguid, user, sucur, "NEXTLOAD", null);
+						sp_aj.Dispose();
+
+						tran.Commit();
+					}
+                    catch (Exception ex)
+                    {
+						tran.Rollback();
+						throw ex;
+					}
+				}
+			}
+
+			LogController.CreateLog(user, "AJUSTE " + (output ? "SALIDA" : "ENTRADA"), doc_num, "M", "CARGA DE RENGLONES");
+			return doc_num;
+		}
+
+        // PROCESOS DE NOTAS (R/E)
         public List<NotaExcel> ProcessExcelNote(string path, bool output)
         {
             List<NotaExcel> rows = new List<NotaExcel>();

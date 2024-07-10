@@ -18,7 +18,7 @@
         </div>
     </asp:Panel>
     <div class="d-flex justify-content-between align-items-center mt-3">
-        <h2>Ajuste de Salida</h2>
+        <h2>Ajuste de Salida <span id="SP_Exist" runat="server" visible="false" style="font-size: 20px;">(Doc. Existente)</span></h2>
         <div>
             <asp:LinkButton ID="BTN_DownloadTemplate" runat="server" CssClass="btn btn-primary m-0" OnClick="BTN_DownloadTemplate_Click">
                 <i class="fas fa-download"></i> Descargar Plantilla
@@ -34,26 +34,63 @@
         <asp:LinkButton ID="BTN_UploadFileExcel" runat="server" CssClass="btn btn-success disabled mt-3" OnClick="BTN_UploadFileExcel_Click" OnClientClick="openModal()">
             <i class="fas fa-file-excel"></i> Subir Archivo Excel
         </asp:LinkButton>
+        <div class="d-flex mt-3 mx-3">
+            <dx:ASPxCheckBox ID="CK_Exist" runat="server" AutoPostBack="true" Text="Cargar lotes a Doc. Existente" OnCheckedChanged="CK_Exist_CheckedChanged">
+            </dx:ASPxCheckBox>
+        </div>
     </div>
     <hr />
-    <div>
-        <h3>Condiciones</h3>
-        <ul style="color: #555; font-size: 14px; line-height: 25px;">
-            <li>El articulo debe estar activo.</li>
-            <li>El articulo debe manejar lote.</li>
-            <li>El articulo debe manejar lotes con fecha de vencimiento.</li>
-            <li>El articulo debe tener stock disponible.</li>
-            <li>La fecha de elaboracion del lote no debe ser mayor igual a la fecha de vencimiento.</li>
-            <li>Los numeros de lote no pueden repetirse.</li>
-            <li>El numero de lote ya debe estar registrado anteriormente en el sistema.</li>
-            <li>Todos los items deben tener el mismo codigo de sucursal.</li>
-            <li>Todos los items deben tener el mismo codigo de moneda.</li>
-            <li>Todos los items deben tener el mismo valor de tasa de cambio.</li>
-            <li>Los codigos de unidades de los articulos deben ser de las unidades principales.</li>
-            <li>Todos los codigos de unidades por articulo deben ser iguales.</li>
-            <li>Todos los valores de costo por articulo y por almacen deben ser iguales.</li>
-        </ul>
-    </div>
+    <asp:Panel ID="PN_CondsNormal" runat="server" Visible="true" CssClass="row">
+        <div class="col">
+            <h3>Condiciones <span style="font-size: 16px;">- Sistema Profit Plus</span></h3>
+            <ul style="color: #555; font-size: 14px; line-height: 25px;">
+                <li>El Articulo debe existir.</li>
+                <li>El Articulo debe estar activo.</li>
+                <li>El Articulo debe manejar lotes.</li>
+                <li>El Articulo debe manejar fecha de vencimiento.</li>
+                <li>El Articulo debe tener Stock Disponible.</li>
+                <li>El Nro. de Lote YA debe estar registrado previamente.</li>
+                <li>Los Codigos de Unidades de los Articulos deben ser de las Unidades Principales.</li>
+            </ul>
+        </div>
+        <div class="col">
+            <h3>Condiciones <span style="font-size: 16px;">- Archivo Excel</span></h3>
+            <ul style="color: #555; font-size: 14px; line-height: 25px;">
+                <li>El Nro. de Lote no debe estar repetido entre las filas del archivo.</li>
+                <li>Todas las filas deben tener el mismo Codigo de Sucursal.</li>
+                <li>Todas las filas deben tener el mismo Codigo de Moneda.</li>
+                <li>Todas las filas deben tener el mismo Valor de Tasa de Cambio.</li>
+                <li>Todas las filas deben tener el mismo Codigo de Unidad por Articulo.</li>
+                <li>Todas las filas deben tener el mismo Valores de Precio por Articulo/Almacen.</li>
+            </ul>
+        </div>
+    </asp:Panel>
+    <asp:Panel ID="PN_CondsExists" runat="server" Visible="false" CssClass="row">
+        <div class="col">
+            <h3>Condiciones (Documento Existente) <span style="font-size: 16px;">- Sistema Profit Plus</span></h3>
+            <ul style="color: #555; font-size: 14px; line-height: 25px;">
+                <li>El Articulo debe existir.</li>
+                <li>El Articulo debe estar activo.</li>
+                <li>El Articulo debe manejar lotes.</li>
+                <li>El Articulo debe manejar fecha de vencimiento.</li>
+                <li>El Nro. de Lote YA debe estar registrado previamente.</li>
+                <li>El Nro. del Ajuste debe existir.</li>
+                <li>El Nro. de Renglon debe existir.</li>
+                <li>Cada Renglon del Documento debe ser de tipo S01 (Salida).</li>
+            </ul>
+        </div>
+        <div class="col">
+            <h3>Condiciones (Documento Existente) <span style="font-size: 16px;">- Archivo Excel</span></h3>
+            <ul style="color: #555; font-size: 14px; line-height: 25px;">
+                <li>El Nro. de Lote no debe estar repetido entre las filas del archivo.</li>
+                <li>Todas las filas deben tener el mismo Nro. de Ajuste.</li>
+                <li>El Articulo debe ser unico por cada Nro. de Renglon.</li>
+                <li>Los Codigos de Articulo en las filas del archivo y los renglones del documento en sistema deben coincidir.</li>
+                <li>La Sumatoria de Cantidad por Nro. de Renglon no debe exceder la cantidad del renglon en sistema.</li>
+                <li>La Sumatoria de Cantidad del Nro. de Lote no debe exceder stock actual del lote en sistema.</li>
+            </ul>
+        </div>
+    </asp:Panel>
     <%-- MODAL WAITING --%>
     <div class="modal fade" id="modal-waiting" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog" role="document">

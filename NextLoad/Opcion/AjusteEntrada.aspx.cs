@@ -50,6 +50,7 @@ namespace NextLoad.Opcion
                         {
                             var rows = dc.ProcessExistExcelAdjust(path, false);
                             dc.ProcessExistDataAdjust(rows, false);
+                            result = dc.InsertExistDataAdjust(rows, user.username, false);
                         }
                     }
                     catch (Exception ex)
