@@ -55,13 +55,13 @@
         <div class="col">
             <h3>Condiciones <span style="font-size: 16px;">- Archivo Excel</span></h3>
             <ul style="color: #555; font-size: 14px; line-height: 25px;">
-                <li>La Fecha de Elaboracion debe ser menor a la Fecha de Vencimiento.</li>
                 <li>El Nro. de Lote no debe estar repetido entre las filas del archivo.</li>
                 <li>Todas las filas deben tener el mismo Codigo de Sucursal.</li>
                 <li>Todas las filas deben tener el mismo Codigo de Moneda.</li>
                 <li>Todas las filas deben tener el mismo Valor de Tasa de Cambio.</li>
                 <li>Todas las filas deben tener el mismo Codigo de Unidad por Articulo.</li>
-                <li>Todas las filas deben tener el mismo Valores de Costo por Articulo/Almacen.</li>
+                <li>Todas las filas deben tener el mismo Valor de Costo por Articulo/Almacen.</li>
+                <li>La Fecha de Elaboracion debe ser menor a la Fecha de Vencimiento.</li>
             </ul>
         </div>
     </asp:Panel>
@@ -76,18 +76,20 @@
                 <li>El Nro. de Lote NO debe estar registrado previamente.</li>
                 <li>El Nro. del Ajuste debe existir.</li>
                 <li>El Nro. de Renglon debe existir.</li>
+                <li>El Nro. de Renglon NO debe estar asignado previamente.</li>
                 <li>Cada Renglon del Ajuste debe ser de tipo E01 (Entrada).</li>
             </ul>
         </div>
         <div class="col">
             <h3>Condiciones (Documento Existente) <span style="font-size: 16px;">- Archivo Excel</span></h3>
             <ul style="color: #555; font-size: 14px; line-height: 25px;">
-                <li>La Fecha de Elaboracion debe ser menor a la Fecha de Vencimiento.</li>
                 <li>El Nro. de Lote no debe estar repetido entre las filas del archivo.</li>
                 <li>Todas las filas deben tener el mismo Nro. de Ajuste.</li>
                 <li>El Articulo debe ser unico por cada Nro. de Renglon.</li>
                 <li>Los Codigos de Articulo en las filas del archivo y los renglones del documento en sistema deben coincidir.</li>
-                <li>La Sumatoria de Cantidad en los lotes por Nro. de Renglon no debe exceder la cantidad del renglon en sistema.</li>
+                <li>La Sumatoria de Cantidad por Nro. de Renglon no debe exceder la cantidad del renglon en sistema.</li>
+                <li>La Sumatoria de Cantidad del Nro. de Lote no debe exceder stock actual del lote en sistema.</li>
+                <li>La Fecha de Elaboracion debe ser menor a la Fecha de Vencimiento.</li>
             </ul>
         </div>
     </asp:Panel>

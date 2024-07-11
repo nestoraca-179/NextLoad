@@ -40,9 +40,18 @@ namespace NextLoad.Opcion
                     {
                         file.SaveAs(path);
 
-                        var rows = dc.ProcessExcelNote(path, false);
-                        dc.ProcessDataNote(rows, false);
-                        result = dc.InsertDataNote(rows, user.username, false);
+						if (!CK_Exist.Checked)
+                        {
+							var rows = dc.ProcessExcelNote(path, false);
+							dc.ProcessDataNote(rows, false);
+							result = dc.InsertDataNote(rows, user.username, false);
+                        }
+                        else
+                        {
+							var rows = dc.ProcessExcelDocExist(path, false);
+							dc.ProcessExistDataNote(rows, false);
+                            result = dc.InsertExistDataNote(rows, user.username, false);
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -79,20 +88,49 @@ namespace NextLoad.Opcion
 
         protected void BTN_DownloadTemplate_Click(object sender, EventArgs e)
         {
-            string path = Server.MapPath("~") + "Templates\\nota_recepcion.xlsx";
-            Response.ContentType = "application/vnd.ms-excel";
-            Response.AppendHeader("Content-Disposition", "attachment; filename=TEMPLATE_nota_recepcion.xlsx");
-            Response.TransmitFile(path);
-            Response.End();
+            if (!CK_Exist.Checked)
+            {
+				string path = Server.MapPath("~") + "Templates\\nota_recepcion.xlsx";
+				Response.ContentType = "application/vnd.ms-excel";
+				Response.AppendHeader("Content-Disposition", "attachment; filename=TEMPLATE_nota_recepcion.xlsx");
+				Response.TransmitFile(path);
+				Response.End();
+            }
+            else
+            {
+				string path = Server.MapPath("~") + "Templates\\nota_recepcion_exists.xlsx";
+				Response.ContentType = "application/vnd.ms-excel";
+				Response.AppendHeader("Content-Disposition", "attachment; filename=TEMPLATE_nota_recepcion_exists.xlsx");
+				Response.TransmitFile(path);
+				Response.End();
+			}
         }
 
         protected void BTN_DownloadExample_Click(object sender, EventArgs e)
         {
-            string path = Server.MapPath("~") + "Files\\nota_recepcion.xlsx";
-            Response.ContentType = "application/vnd.ms-excel";
-            Response.AppendHeader("Content-Disposition", "attachment; filename=EXAMPLE_nota_recepcion.xlsx");
-            Response.TransmitFile(path);
-            Response.End();
+            if (!CK_Exist.Checked)
+            {
+				string path = Server.MapPath("~") + "Files\\nota_recepcion.xlsx";
+				Response.ContentType = "application/vnd.ms-excel";
+				Response.AppendHeader("Content-Disposition", "attachment; filename=EXAMPLE_nota_recepcion.xlsx");
+				Response.TransmitFile(path);
+				Response.End();
+            }
+            else
+            {
+				string path = Server.MapPath("~") + "Files\\nota_recepcion_exists.xlsx";
+				Response.ContentType = "application/vnd.ms-excel";
+				Response.AppendHeader("Content-Disposition", "attachment; filename=EXAMPLE_nota_recepcion_exists.xlsx");
+				Response.TransmitFile(path);
+				Response.End();
+			}
         }
-    }
+
+		protected void CK_Exist_CheckedChanged(object sender, EventArgs e)
+		{
+			PN_CondsNormal.Visible = !CK_Exist.Checked;
+			PN_CondsExists.Visible = CK_Exist.Checked;
+			SP_Exist.Visible = CK_Exist.Checked;
+		}
+	}
 }

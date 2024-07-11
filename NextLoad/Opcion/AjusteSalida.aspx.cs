@@ -48,7 +48,7 @@ namespace NextLoad.Opcion
                         }
                         else
                         {
-							var rows = dc.ProcessExistExcelAdjust(path, true);
+							var rows = dc.ProcessExcelDocExist(path, true);
 							dc.ProcessExistDataAdjust(rows, true);
 							result = dc.InsertExistDataAdjust(rows, user.username, true);
 						}
@@ -95,6 +95,14 @@ namespace NextLoad.Opcion
 				Response.AppendHeader("Content-Disposition", "attachment; filename=TEMPLATE_ajuste_salida.xlsx");
 				Response.TransmitFile(path);
 				Response.End();
+            }
+            else
+            {
+				string path = Server.MapPath("~") + "Templates\\ajuste_salida_exists.xlsx";
+				Response.ContentType = "application/vnd.ms-excel";
+				Response.AppendHeader("Content-Disposition", "attachment; filename=TEMPLATE_ajuste_salida_exists.xlsx");
+				Response.TransmitFile(path);
+				Response.End();
 			}
         }
 
@@ -105,6 +113,14 @@ namespace NextLoad.Opcion
 				string path = Server.MapPath("~") + "Files\\ajuste_salida.xlsx";
 				Response.ContentType = "application/vnd.ms-excel";
 				Response.AppendHeader("Content-Disposition", "attachment; filename=EXAMPLE_ajuste_salida.xlsx");
+				Response.TransmitFile(path);
+				Response.End();
+            }
+            else
+            {
+				string path = Server.MapPath("~") + "Files\\ajuste_salida_exists.xlsx";
+				Response.ContentType = "application/vnd.ms-excel";
+				Response.AppendHeader("Content-Disposition", "attachment; filename=EXAMPLE_ajuste_salida_exists.xlsx");
 				Response.TransmitFile(path);
 				Response.End();
 			}

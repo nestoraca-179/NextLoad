@@ -48,9 +48,9 @@
                 <li>El Articulo debe estar activo.</li>
                 <li>El Articulo debe manejar lotes.</li>
                 <li>El Articulo debe manejar fecha de vencimiento.</li>
-                <li>El Articulo debe tener Stock Disponible.</li>
                 <li>El Nro. de Lote YA debe estar registrado previamente.</li>
                 <li>Los Codigos de Unidades de los Articulos deben ser de las Unidades Principales.</li>
+                <li>El Articulo debe tener Stock Disponible.</li>
             </ul>
         </div>
         <div class="col">
@@ -61,7 +61,7 @@
                 <li>Todas las filas deben tener el mismo Codigo de Moneda.</li>
                 <li>Todas las filas deben tener el mismo Valor de Tasa de Cambio.</li>
                 <li>Todas las filas deben tener el mismo Codigo de Unidad por Articulo.</li>
-                <li>Todas las filas deben tener el mismo Valores de Precio por Articulo/Almacen.</li>
+                <li>Todas las filas deben tener el mismo Valor de Precio por Articulo/Almacen.</li>
             </ul>
         </div>
     </asp:Panel>
@@ -76,7 +76,8 @@
                 <li>El Nro. de Lote YA debe estar registrado previamente.</li>
                 <li>El Nro. del Ajuste debe existir.</li>
                 <li>El Nro. de Renglon debe existir.</li>
-                <li>Cada Renglon del Documento debe ser de tipo S01 (Salida).</li>
+                <li>El Nro. de Renglon NO debe estar asignado previamente.</li>
+                <li>Cada Renglon del Ajuste debe ser de tipo S01 (Salida).</li>
             </ul>
         </div>
         <div class="col">

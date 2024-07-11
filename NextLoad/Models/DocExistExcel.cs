@@ -2,7 +2,7 @@
 
 namespace NextLoad.Models
 {
-	public class AjusteExistExcel
+	public class DocExistExcel
 	{
         public string doc_num { get; set; }
         public int reng_num { get; set; }

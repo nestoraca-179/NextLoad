@@ -208,7 +208,7 @@
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\AjusteExcel.cs" />
-    <Compile Include="Models\AjusteExistExcel.cs" />
+    <Compile Include="Models\DocExistExcel.cs" />
     <Compile Include="Models\Incidente.cs">
       <DependentUpon>NextLoad.tt</DependentUpon>
     </Compile>
