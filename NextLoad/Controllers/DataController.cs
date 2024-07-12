@@ -11,7 +11,7 @@ using System.Data.Entity;
 
 namespace NextLoad.Controllers
 {
-    public class DataController
+    public class DataController : ProfitAdmManager
     {
         public bool IsExcel(HttpPostedFile file)
         {
@@ -89,7 +89,7 @@ namespace NextLoad.Controllers
                 }
             }
 
-            using (ProfitAdmEntities context = new ProfitAdmEntities())
+            using (ProfitAdmEntities context = new ProfitAdmEntities(entity.ToString()))
             {
                 foreach (string u in uniques)
                 {
@@ -157,7 +157,7 @@ namespace NextLoad.Controllers
             decimal tasa = data.Select(r => r.tasa).First();
 
             var uniques = data.GroupBy(r => r.co_art).Select(g => g.First().co_art).ToList();
-            using (ProfitAdmEntities context = new ProfitAdmEntities())
+            using (ProfitAdmEntities context = new ProfitAdmEntities(entity.ToString()))
             {
                 using (DbContextTransaction tran = context.Database.BeginTransaction())
                 {
@@ -356,7 +356,7 @@ namespace NextLoad.Controllers
                 }
             }
 
-            using (ProfitAdmEntities context = new ProfitAdmEntities())
+            using (ProfitAdmEntities context = new ProfitAdmEntities(entity.ToString()))
             {
                 foreach (string u in uniques)
                 {
@@ -467,7 +467,7 @@ namespace NextLoad.Controllers
             decimal total_neto = total_bruto + monto_imp;
 
             var uniques = data.GroupBy(r => r.co_art).Select(g => g.First().co_art).ToList();
-            using (ProfitAdmEntities context = new ProfitAdmEntities())
+            using (ProfitAdmEntities context = new ProfitAdmEntities(entity.ToString()))
             {
                 using (DbContextTransaction tran = context.Database.BeginTransaction())
                 {
@@ -737,10 +737,11 @@ namespace NextLoad.Controllers
 				}
 			}
 
-			using (ProfitAdmEntities context = new ProfitAdmEntities())
+			using (ProfitAdmEntities context = new ProfitAdmEntities(entity.ToString()))
 			{
 				// TIPO DE RENGLON
-				string tipo = output ? "S01 (SALIDA)" : "E01 (ENTRADA)";
+				string tipo = output ? "S01" : "E01";
+                string d_tipo = output ? "(SALIDA)" : "(ENTRADA)";
 
 				// BUSCANDO NUMERO DE AJUSTE EN PROFIT
 				saAjuste aj = context.saAjuste.AsNoTracking().Include(a => a.saAjusteReng)
@@ -755,7 +756,7 @@ namespace NextLoad.Controllers
 						throw new Exception(string.Format("NO EXISTE RENGLON NRO {0} EN EL DOCUMENTO {1}", u, doc_nums.FirstOrDefault()));
 
 					if (aj.saAjusteReng.Single(r => r.reng_num == u).co_tipo.Trim() != tipo) // RENGLON NO ES DE TIPO E01/S01
-						throw new Exception(string.Format("EL RENGLON NRO {0} NO ES DE TIPO {1}", u, tipo));
+						throw new Exception(string.Format("EL RENGLON NRO {0} NO ES DE TIPO {1} {2}", u, tipo, d_tipo));
 
 					if (aj.saAjusteReng.Single(r => r.reng_num == u).lote_asignado)
 						throw new Exception(string.Format("Renglon {0} ya ha sido asignado previamente", u));
@@ -819,7 +820,7 @@ namespace NextLoad.Controllers
 				}
 			}
 
-			using (ProfitAdmEntities context = new ProfitAdmEntities())
+			using (ProfitAdmEntities context = new ProfitAdmEntities(entity.ToString()))
 			{
 				foreach (int u in uniques)
 				{
@@ -905,7 +906,7 @@ namespace NextLoad.Controllers
 		{
 			string doc_num = "";
 			var uniques = data.GroupBy(r => r.reng_num).Select(g => g.First().reng_num).ToList();
-			using (ProfitAdmEntities context = new ProfitAdmEntities())
+			using (ProfitAdmEntities context = new ProfitAdmEntities(entity.ToString()))
 			{
 				using (DbContextTransaction tran = context.Database.BeginTransaction())
 				{
@@ -991,7 +992,7 @@ namespace NextLoad.Controllers
         {
 			string doc_num = "";
 			var uniques = data.GroupBy(r => r.reng_num).Select(g => g.First().reng_num).ToList();
-			using (ProfitAdmEntities context = new ProfitAdmEntities())
+			using (ProfitAdmEntities context = new ProfitAdmEntities(entity.ToString()))
 			{
 				using (DbContextTransaction tran = context.Database.BeginTransaction())
 				{

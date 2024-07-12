@@ -15,9 +15,9 @@ namespace NextLoad.Models
     
     public partial class NextLoadEntities : DbContext
     {
-        public NextLoadEntities()
-            : base("name=NextLoadEntities")
+        public NextLoadEntities() : base("name=NextLoadEntities")
         {
+            Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -28,5 +28,6 @@ namespace NextLoad.Models
         public virtual DbSet<Incidente> Incidente { get; set; }
         public virtual DbSet<Log> Log { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<Empresa> Empresa { get; set; }
     }
 }

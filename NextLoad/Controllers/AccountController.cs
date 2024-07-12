@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
@@ -50,6 +51,57 @@ namespace NextLoad.Controllers
             return result;
         }
 
+        public static string ChangePass(string username, string old_pass, string new_pass)
+        {
+            string message = "";
+
+            try
+            {
+				if (!string.IsNullOrEmpty(old_pass) && !string.IsNullOrEmpty(new_pass))
+				{
+					string encryptedOldPass = SecurityController.Encrypt(old_pass);
+					string encryptedNewPass = SecurityController.Encrypt(new_pass);
+
+					using (NextLoadEntities context = new NextLoadEntities())
+					{
+						Usuario user = context.Usuario.AsNoTracking().SingleOrDefault(u => u.username == username && u.password == encryptedOldPass);
+
+						if (user == null)
+						{
+							message = "Usuario o clave incorrectos";
+						}
+						else
+						{
+							if (old_pass.Trim() == new_pass.Trim())
+							{
+								message = "Debes ingresar una clave diferente a la anterior";
+							}
+							else
+							{
+								user.password = encryptedNewPass;
+								user.fec_camb = DateTime.Now.AddMonths(3);
+								context.Entry(user).State = EntityState.Modified;
+								context.SaveChanges();
+
+								message = "OK";
+							}
+						}
+					}
+				}
+				else
+				{
+					message = "Debes ingresar la clave anterior y la clave nueva";
+				}
+            }
+            catch (Exception ex)
+            {
+                message = ex.Message;
+                IncidentController.CreateIncident("ERROR CAMBIANDO CLAVE A USUARIO " + username, ex);
+            }
+
+			return message;
+        }
+        
         public static void LogOut()
         {
             Usuario user = HttpContext.Current.Session["USER"] as Usuario;

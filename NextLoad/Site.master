@@ -45,6 +45,7 @@
 </section>
 <footer>
     <div class="container">
+        <asp:Label ID="LBL_DataEmp" runat="server" CssClass="m-0" />
         <p style="margin: 0;">NextLoad Ver. 1.0 &copy; 2024 - AC Solutions</p>
     </div>
 </footer>

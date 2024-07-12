@@ -98,9 +98,9 @@ namespace NextLoad.Opcion
             }
             else
             {
-				string path = Server.MapPath("~") + "Templates\\ajuste_salida_exists.xlsx";
+				string path = Server.MapPath("~") + "Templates\\ajuste_salida_exist.xlsx";
 				Response.ContentType = "application/vnd.ms-excel";
-				Response.AppendHeader("Content-Disposition", "attachment; filename=TEMPLATE_ajuste_salida_exists.xlsx");
+				Response.AppendHeader("Content-Disposition", "attachment; filename=TEMPLATE_ajuste_salida_exist.xlsx");
 				Response.TransmitFile(path);
 				Response.End();
 			}
@@ -118,9 +118,9 @@ namespace NextLoad.Opcion
             }
             else
             {
-				string path = Server.MapPath("~") + "Files\\ajuste_salida_exists.xlsx";
+				string path = Server.MapPath("~") + "Files\\ajuste_salida_exist.xlsx";
 				Response.ContentType = "application/vnd.ms-excel";
-				Response.AppendHeader("Content-Disposition", "attachment; filename=EXAMPLE_ajuste_salida_exists.xlsx");
+				Response.AppendHeader("Content-Disposition", "attachment; filename=EXAMPLE_ajuste_salida_exist.xlsx");
 				Response.TransmitFile(path);
 				Response.End();
 			}

@@ -98,9 +98,9 @@ namespace NextLoad.Opcion
             }
             else
             {
-				string path = Server.MapPath("~") + "Templates\\nota_recepcion_exists.xlsx";
+				string path = Server.MapPath("~") + "Templates\\nota_recepcion_exist.xlsx";
 				Response.ContentType = "application/vnd.ms-excel";
-				Response.AppendHeader("Content-Disposition", "attachment; filename=TEMPLATE_nota_recepcion_exists.xlsx");
+				Response.AppendHeader("Content-Disposition", "attachment; filename=TEMPLATE_nota_recepcion_exist.xlsx");
 				Response.TransmitFile(path);
 				Response.End();
 			}
@@ -118,9 +118,9 @@ namespace NextLoad.Opcion
             }
             else
             {
-				string path = Server.MapPath("~") + "Files\\nota_recepcion_exists.xlsx";
+				string path = Server.MapPath("~") + "Files\\nota_recepcion_exist.xlsx";
 				Response.ContentType = "application/vnd.ms-excel";
-				Response.AppendHeader("Content-Disposition", "attachment; filename=EXAMPLE_nota_recepcion_exists.xlsx");
+				Response.AppendHeader("Content-Disposition", "attachment; filename=EXAMPLE_nota_recepcion_exist.xlsx");
 				Response.TransmitFile(path);
 				Response.End();
 			}

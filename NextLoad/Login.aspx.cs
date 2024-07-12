@@ -27,7 +27,8 @@ namespace NextLoad
                     message = "Usuario o Clave incorrectos";
                     break;
                 case 1:
-                    Response.Redirect("/Dashboard.aspx");
+                    // Response.Redirect("/Dashboard.aspx");
+                    Response.Redirect("/SeleccionEmpresa.aspx");
                     break;
                 case 2:
                     message = "Usuario Inactivo";

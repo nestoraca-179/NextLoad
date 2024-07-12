@@ -14,7 +14,13 @@ namespace NextLoad
 
                 if (!user.admin)
                     item_users.Visible = false;
-            }
+
+				string name_suc = Session["NAME_CONN"].ToString();
+                if (Session["BRANCH"] != null)
+					name_suc += (" / Sucursal: " + (Session["BRANCH"] as saSucursal).sucur_des);
+
+                LBL_DataEmp.Text = name_suc;
+			}
             else
                 Response.Redirect("/Login.aspx");
         }

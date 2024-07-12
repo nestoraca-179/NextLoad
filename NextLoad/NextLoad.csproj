@@ -144,6 +144,8 @@
     <Content Include="Scripts\jquery-3.6.0.slim.min.js" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SeleccionEmpresa.aspx" />
+    <Content Include="SeleccionSucursal.aspx" />
     <Content Include="Site.master" />
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +180,7 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DataController.cs" />
+    <Compile Include="Controllers\EntityController.cs" />
     <Compile Include="Controllers\IncidentController.cs" />
     <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Controllers\Repository.cs" />
@@ -208,7 +211,12 @@
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\AjusteExcel.cs" />
+    <Compile Include="Models\Branch.cs" />
+    <Compile Include="Models\Connection.cs" />
     <Compile Include="Models\DocExistExcel.cs" />
+    <Compile Include="Models\Empresa.cs">
+      <DependentUpon>NextLoad.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Incidente.cs">
       <DependentUpon>NextLoad.tt</DependentUpon>
     </Compile>
@@ -294,6 +302,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProfitAdm.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProfitAdmManager.cs" />
     <Compile Include="Models\pSeleccionarUsoSucursalConsecutivoTipo_Result.cs">
       <DependentUpon>ProfitAdm.tt</DependentUpon>
     </Compile>
@@ -1040,6 +1049,20 @@
       <DependentUpon>NotaRecepcion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SeleccionEmpresa.aspx.cs">
+      <DependentUpon>SeleccionEmpresa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SeleccionEmpresa.aspx.designer.cs">
+      <DependentUpon>SeleccionEmpresa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SeleccionSucursal.aspx.cs">
+      <DependentUpon>SeleccionSucursal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SeleccionSucursal.aspx.designer.cs">
+      <DependentUpon>SeleccionSucursal.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.master.cs">
       <DependentUpon>Site.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
