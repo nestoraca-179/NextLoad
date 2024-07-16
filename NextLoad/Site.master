@@ -38,6 +38,7 @@
             <li><a href="/Opcion/NotaRecepcion.aspx"><i class="fas fa-file-import"></i><p class="m-0">Nota de Recepcion</p></a></li>
             <li id="item_users" runat="server"><a href="/Usuarios/Index.aspx"><i class="fas fa-user"></i><p class="m-0">Usuarios</p></a></li>
         </ul>
+	    <img src="/images/pg.png" alt="pg" width="150" />
     </div>
     <div class="col-10 container-fluid">
         <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
@@ -46,7 +47,8 @@
 <footer>
     <div class="container">
         <asp:Label ID="LBL_DataEmp" runat="server" CssClass="m-0" />
-        <p style="margin: 0;">NextLoad Ver. 1.0 &copy; 2024 - AC Solutions</p>
+        <%--<p style="margin: 0;">NextLoad Ver. 1.0 &copy; 2024 - AC Solutions</p>--%>
+        <p style="margin: 0;">Proceso Especial Profit Plus (Carga Masiva de Lotes)</p>
     </div>
 </footer>
 <script>

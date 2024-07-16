@@ -58,6 +58,15 @@ body > section.container-fluid {
 body > section.container-fluid > .col-2 {
     background: #1d262d;
     padding: 0;
+    position: relative;
+}
+body > section.container-fluid > .col-2 > img {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 body > section.container-fluid > .col-2.active, footer > .col-2.active {
     flex: 0;
