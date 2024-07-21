@@ -45,7 +45,7 @@ body header > .col-2 i.fas.fa-bars:hover {
 body header > .col-10 {
     background: #5f27cd;
     padding: 0;
-    justify-content: end !important;
+    justify-content: flex-end !important;
 }
 body > section.container-fluid {
     width: 100%;

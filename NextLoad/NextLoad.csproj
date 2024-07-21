@@ -104,6 +104,8 @@
     <Content Include="Dashboard.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="images\pg.png" />
+    <Content Include="images\profit.png" />
     <Content Include="Login.aspx" />
     <Content Include="Models\NextLoad.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -137,6 +139,14 @@
     <Content Include="Models\ProfitAdm.edmx.diagram">
       <DependentUpon>ProfitAdm.edmx</DependentUpon>
     </Content>
+    <Content Include="Files\ajuste_entrada.xlsx" />
+    <Content Include="Files\ajuste_entrada_exist.xlsx" />
+    <Content Include="Files\ajuste_salida.xlsx" />
+    <Content Include="Files\ajuste_salida_exist.xlsx" />
+    <Content Include="Files\nota_entrega.xlsx" />
+    <Content Include="Files\nota_entrega_exist.xlsx" />
+    <Content Include="Files\nota_recepcion.xlsx" />
+    <Content Include="Files\nota_recepcion_exist.xlsx" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -163,6 +173,14 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.6.0.min.map" />
     <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
+    <Content Include="Templates\ajuste_entrada.xlsx" />
+    <Content Include="Templates\ajuste_entrada_exist.xlsx" />
+    <Content Include="Templates\ajuste_salida.xlsx" />
+    <Content Include="Templates\ajuste_salida_exist.xlsx" />
+    <Content Include="Templates\nota_entrega.xlsx" />
+    <Content Include="Templates\nota_entrega_exist.xlsx" />
+    <Content Include="Templates\nota_recepcion.xlsx" />
+    <Content Include="Templates\nota_recepcion_exist.xlsx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
